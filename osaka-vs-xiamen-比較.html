@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大阪 vs 廈門泉州｜兄弟出走，選哪個？</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c10;
+  --osaka-c: #c084fc;
+  --osaka-dark: #6c3fa0;
+  --osaka-glow: rgba(192,132,252,0.15);
+  --xiamen-c: #f0c040;
+  --xiamen-dark: #c8960c;
+  --xiamen-glow: rgba(240,192,64,0.15);
+  --text: #f0ece4;
+  --muted: rgba(240,236,228,0.45);
+  --divider: rgba(255,255,255,0.07);
+  --rec: #22c55e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--text);
+  font-family:'Noto Serif TC',serif; overflow-x:hidden;
+  cursor: none;
+}
+
+/* custom cursor */
+.cursor {
+  width:12px; height:12px; border-radius:50%;
+  background:white; position:fixed; pointer-events:none;
+  z-index:9999; transform:translate(-50%,-50%);
+  transition:background .2s, transform .2s;
+  mix-blend-mode: difference;
+}
+
+/* ============ HERO ============ */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:60px 24px; text-align:center; position:relative; overflow:hidden;
+}
+
+/* animated bg */
+.hero-bg {
+  position:absolute; inset:0; pointer-events:none; overflow:hidden;
+}
+.orb {
+  position:absolute; border-radius:50%; filter:blur(80px); opacity:.6;
+  animation:drift 12s ease-in-out infinite;
+}
+.orb1 { width:500px;height:500px; background:rgba(108,63,160,0.3); top:-200px;left:-150px; animation-delay:0s; }
+.orb2 { width:400px;height:400px; background:rgba(192,43,43,0.2); bottom:-150px;right:-100px; animation-delay:4s; }
+.orb3 { width:300px;height:300px; background:rgba(200,150,12,0.2); bottom:100px;left:20%; animation-delay:8s; }
+@keyframes drift {
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-20px) scale(1.05)}
+  66%{transform:translate(-20px,30px) scale(0.95)}
+}
+
+/* noise overlay */
+.hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4; pointer-events:none;
+}
+
+.hero-tag {
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:4px;
+  color:var(--muted); border:1px solid rgba(255,255,255,0.1);
+  padding:5px 16px; border-radius:2px; margin-bottom:28px;
+  animation:fadeUp .8s ease forwards; opacity:0;
+}
+.hero h1 {
+  font-size:clamp(28px,8vw,72px); font-weight:900; line-height:1.05;
+  animation:fadeUp .8s .1s ease forwards; opacity:0;
+}
+.hero h1 .vs {
+  display:inline-block; font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(36px,10vw,96px); color:rgba(255,255,255,0.15);
+  margin:0 8px; vertical-align:middle;
+  animation:fadeUp .8s .15s ease forwards; opacity:0;
+}
+.osaka-txt { color:var(--osaka-c); }
+.xiamen-txt { color:var(--xiamen-c); }
+
+.hero-sub {
+  margin-top:16px; font-size:13px; color:var(--muted); letter-spacing:2px;
+  animation:fadeUp .8s .3s ease forwards; opacity:0;
+}
+
+/* recommendation badge */
+.rec-badge {
+  margin-top:32px; display:inline-flex; align-items:center; gap:10px;
+  background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.35);
+  border-radius:4px; padding:12px 22px;
+  animation:fadeUp .8s .45s ease forwards; opacity:0;
+}
+.rec-dot { width:8px;height:8px;border-radius:50%;background:var(--rec); animation:blink 1.5s ease-in-out infinite; }
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.rec-text { font-size:13px; color:var(--rec); font-weight:600; letter-spacing:1px; }
+
+.scroll-hint {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--muted);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  animation:fadeUp .8s .8s ease forwards; opacity:0;
+}
+.scroll-line { width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent); animation:scrollLine 1.5s ease-in-out infinite; }
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ COMPARISON TABLE ============ */
+.wrap { max-width:1100px; margin:0 auto; padding:0 20px 100px; }
+
+/* section title */
+.sec {
+  text-align:center; padding:80px 0 48px;
+}
+.sec h2 { font-size:clamp(20px,5vw,36px); font-weight:900; margin-bottom:8px; }
+.sec p { font-size:13px; color:var(--muted); letter-spacing:2px; }
+
+/* ---- HEAD ROW ---- */
+.compare-head {
+  display:grid; grid-template-columns:200px 1fr 1fr;
+  gap:2px; margin-bottom:2px;
+}
+@media(max-width:680px){ .compare-head{grid-template-columns:90px 1fr 1fr;} }
+
+.ch-blank { }
+.ch-osaka {
+  background:rgba(108,63,160,0.15); border:1px solid rgba(192,132,252,0.2);
+  border-radius:4px 4px 0 0; padding:20px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.ch-osaka::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(to right,#6c3fa0,#c084fc,#e84393); }
+.ch-xiamen {
+  background:rgba(200,150,12,0.1); border:1px solid rgba(240,192,64,0.2);
+  border-radius:4px 4px 0 0; padding:20px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.ch-xiamen::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(to right,#c8960c,#f0c040,#c0392b); }
+.ch-osaka .rec-tag, .ch-xiamen .rec-tag {
+  display:inline-block; font-family:'DM Mono',monospace; font-size:9px;
+  letter-spacing:2px; padding:3px 8px; border-radius:2px; margin-top:6px;
+}
+.ch-osaka .rec-tag { background:rgba(192,132,252,0.15); color:var(--osaka-c); }
+.ch-xiamen .rec-tag {
+  background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.3);
+  color:var(--rec);
+}
+.ch-name { font-size:clamp(18px,4vw,28px); font-weight:900; }
+.ch-dates { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1px; margin-top:4px; }
+
+/* ---- ROWS ---- */
+.compare-row {
+  display:grid; grid-template-columns:200px 1fr 1fr;
+  gap:2px; margin-bottom:2px;
+}
+@media(max-width:680px){ .compare-row{grid-template-columns:90px 1fr 1fr;} }
+
+.cr-label {
+  background:rgba(255,255,255,0.03); border:1px solid var(--divider);
+  padding:18px 16px; display:flex; align-items:center;
+  font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--muted);
+  text-transform:uppercase;
+}
+.cr-osaka {
+  background:rgba(108,63,160,0.08); border:1px solid rgba(192,132,252,0.12);
+  padding:18px 20px; position:relative;
+}
+.cr-xiamen {
+  background:rgba(200,150,12,0.06); border:1px solid rgba(240,192,64,0.12);
+  padding:18px 20px; position:relative;
+}
+.cr-osaka.winner { background:rgba(192,132,252,0.14); border-color:rgba(192,132,252,0.3); }
+.cr-xiamen.winner { background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.3); }
+
+.winner-tag {
+  position:absolute; top:10px; right:10px;
+  font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px;
+  padding:2px 6px; border-radius:2px;
+}
+.osaka-win { background:rgba(192,132,252,0.2); color:var(--osaka-c); }
+.xiamen-win { background:rgba(34,197,94,0.2); color:var(--rec); }
+
+.cr-val { font-size:14px; font-weight:600; margin-bottom:5px; }
+.cr-desc { font-size:12px; color:var(--muted); line-height:1.7; }
+.cr-osaka .cr-val { color:var(--osaka-c); }
+.cr-xiamen .cr-val { color:var(--xiamen-c); }
+.cr-xiamen.winner .cr-val { color:var(--rec); }
+
+/* stars */
+.stars { display:flex; gap:3px; margin-bottom:5px; }
+.star { font-size:14px; }
+.star.on-o { color:var(--osaka-c); }
+.star.on-x { color:var(--xiamen-c); }
+.star.off { color:rgba(255,255,255,0.15); }
+
+/* ---- VERDICT ---- */
+.verdict {
+  margin-top:2px;
+  background:rgba(34,197,94,0.07); border:1px solid rgba(34,197,94,0.25);
+  border-radius:0 0 4px 4px;
+  padding:32px; text-align:center;
+}
+.verdict-icon { font-size:40px; margin-bottom:12px; }
+.verdict h3 { font-size:22px; font-weight:900; color:var(--rec); margin-bottom:10px; }
+.verdict p { font-size:14px; color:rgba(240,236,228,0.7); line-height:1.85; max-width:600px; margin:0 auto; }
+.verdict-score {
+  display:flex; justify-content:center; gap:40px; margin-top:24px; flex-wrap:wrap;
+}
+.vs-item { text-align:center; }
+.vs-num { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; }
+.vs-num.o { color:var(--osaka-c); }
+.vs-num.x { color:var(--rec); }
+.vs-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); }
+
+/* ---- ITINERARY PREVIEW ---- */
+.preview-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;
+}
+@media(max-width:640px){ .preview-grid{grid-template-columns:1fr;} }
+
+.prev-card {
+  border-radius:4px; overflow:hidden;
+  border:1px solid var(--divider);
+  transition:transform .3s, box-shadow .3s;
+}
+.prev-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.4); }
+
+.prev-head {
+  padding:20px; position:relative; overflow:hidden;
+}
+.prev-head.osaka-h { background:linear-gradient(135deg,#1a0f35,#2d1458); border-bottom:1px solid rgba(192,132,252,0.2); }
+.prev-head.xiamen-h { background:linear-gradient(135deg,#1a1208,#2d1a00); border-bottom:1px solid rgba(240,192,64,0.2); }
+.prev-head-deco { position:absolute; right:-20px;top:-20px; font-size:80px; opacity:.06; }
+
+.prev-tag {
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px;
+  padding:3px 10px; border-radius:2px; margin-bottom:10px; display:inline-block;
+}
+.osaka-tag { background:rgba(192,132,252,0.15); color:var(--osaka-c); border:1px solid rgba(192,132,252,0.25); }
+.xiamen-tag-c { background:rgba(240,192,64,0.15); color:var(--xiamen-c); border:1px solid rgba(240,192,64,0.25); }
+.prev-head h3 { font-size:20px; font-weight:900; margin-bottom:4px; }
+.prev-head .ph-date { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); }
+
+.prev-body { background:rgba(255,255,255,0.02); padding:16px 20px; }
+.day-line {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.day-line:last-child { border-bottom:none; }
+.dl-day {
+  font-family:'Bebas Neue',sans-serif; font-size:28px; line-height:1;
+  min-width:36px; text-align:center; flex-shrink:0;
+}
+.dl-day.o { color:var(--osaka-c); }
+.dl-day.x { color:var(--xiamen-c); }
+.dl-info { flex:1; }
+.dl-date { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--muted); margin-bottom:3px; }
+.dl-title { font-size:13px; font-weight:600; margin-bottom:2px; }
+.dl-desc { font-size:11px; color:var(--muted); line-height:1.6; }
+
+/* ---- CTA ---- */
+.cta-section { text-align:center; padding:60px 0; }
+.cta-section h2 { font-size:clamp(20px,5vw,36px); font-weight:900; margin-bottom:12px; }
+.cta-section p { font-size:14px; color:var(--muted); margin-bottom:32px; line-height:1.8; }
+.cta-btns { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.btn {
+  font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px;
+  padding:14px 28px; border-radius:3px; border:1px solid;
+  cursor:pointer; transition:all .25s; text-decoration:none; display:inline-block;
+}
+.btn-osaka { border-color:var(--osaka-c); color:var(--osaka-c); background:rgba(192,132,252,0.08); }
+.btn-osaka:hover { background:rgba(192,132,252,0.2); transform:translateY(-2px); }
+.btn-xiamen { border-color:var(--rec); color:var(--rec); background:rgba(34,197,94,0.08); }
+.btn-xiamen:hover { background:rgba(34,197,94,0.18); transform:translateY(-2px); }
+
+/* footer */
+.footer { text-align:center; padding:40px 24px; border-top:1px solid var(--divider); }
+.footer p { font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:2px; }
+
+@media(max-width:680px){
+  .cr-label { font-size:9px; padding:14px 10px; letter-spacing:1px; }
+  .cr-osaka, .cr-xiamen { padding:14px 12px; }
+  .ch-osaka, .ch-xiamen { padding:14px 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-tag">👬 兄弟出走 · 行程決策頁</div>
+  <h1>
+    <span class="osaka-txt">大阪</span>
+    <span class="vs">VS</span>
+    <span class="xiamen-txt">廈門泉州</span>
+  </h1>
+  <p class="hero-sub">兩趟行程、一個選擇 · 數據說話，Claude 有答案</p>
+
+  <div class="rec-badge">
+    <div class="rec-dot"></div>
+    <div class="rec-text">Claude 推薦：廈門泉州</div>
+  </div>
+
+  <div class="scroll-hint">
+    SCROLL TO COMPARE
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== COMPARISON TABLE ===== -->
+  <div class="sec">
+    <h2>逐項比較</h2>
+    <p>8 個維度全面對比，看清楚再選</p>
+  </div>
+
+  <!-- HEAD -->
+  <div class="compare-head">
+    <div class="ch-blank"></div>
+    <div class="ch-osaka">
+      <div class="ch-name osaka-txt">🇯🇵 大阪</div>
+      <div class="ch-dates">5/30 FRI — 6/4 WED</div>
+      <span class="rec-tag">美食掃街</span>
+    </div>
+    <div class="ch-xiamen">
+      <div class="ch-name xiamen-txt">🏮 廈門泉州</div>
+      <div class="ch-dates">6/4 WED — 6/9 MON</div>
+      <span class="rec-tag">✦ Claude 推薦</span>
+    </div>
+  </div>
+
+  <!-- ROW 1: 預算 -->
+  <div class="compare-row">
+    <div class="cr-label">💴<br>每日預算</div>
+    <div class="cr-osaka">
+      <div class="cr-val">5,000–8,000 日圓</div>
+      <div class="cr-desc">≈ NT$1,050–1,680<br>大阪消費不低，這個預算在藥妝多買幾樣就超支，吃飯需要精打細算。</div>
+    </div>
+    <div class="cr-xiamen winner">
+      <div class="winner-tag xiamen-win">✦ 勝</div>
+      <div class="cr-val">約 NT$600–1,000</div>
+      <div class="cr-desc">同等預算在廈門泉州可以吃得更好、喝更好的茶，完全不用精算，心情自由。</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: 新鮮感 -->
+  <div class="compare-row">
+    <div class="cr-label">✨<br>新鮮感</div>
+    <div class="cr-osaka">
+      <div class="stars">
+        <span class="star on-o">★</span><span class="star on-o">★</span>
+        <span class="star on-o">★</span><span class="star off">★</span><span class="star off">★</span>
+      </div>
+      <div class="cr-val">中等</div>
+      <div class="cr-desc">大阪對台灣人來說熟悉度高，道頓堀、心齋橋很多人不只去過一次，新鮮感有限。</div>
+    </div>
+    <div class="cr-xiamen winner">
+      <div class="winner-tag xiamen-win">✦ 勝</div>
+      <div class="stars">
+        <span class="star on-x">★</span><span class="star on-x">★</span>
+        <span class="star on-x">★</span><span class="star on-x">★</span><span class="star on-x">★</span>
+      </div>
+      <div class="cr-val">極高</div>
+      <div class="cr-desc">蚵殼厝、洛陽橋種蠣固基、清淨寺——這些東西在世界上獨一無二，大多數台灣人從沒去過。</div>
+    </div>
+  </div>
+
+  <!-- ROW 3: 文化深度 -->
+  <div class="compare-row">
+    <div class="cr-label">🏛️<br>文化深度</div>
+    <div class="cr-osaka">
+      <div class="stars">
+        <span class="star on-o">★</span><span class="star on-o">★</span>
+        <span class="star on-o">★</span><span class="star off">★</span><span class="star off">★</span>
+      </div>
+      <div class="cr-val">中等</div>
+      <div class="cr-desc">大阪城、住吉大社都很好，但若是以美食購物為主軸，文化行程很難深入。</div>
+    </div>
+    <div class="cr-xiamen winner">
+      <div class="winner-tag xiamen-win">✦ 勝</div>
+      <div class="stars">
+        <span class="star on-x">★</span><span class="star on-x">★</span>
+        <span class="star on-x">★</span><span class="star on-x">★</span><span class="star on-x">★</span>
+      </div>
+      <div class="cr-val">極深</div>
+      <div class="cr-desc">泉州是UNESCO世界遺產、海上絲綢之路起點。多元宗教共存、千年建橋工法，每個景點都有故事。</div>
+    </div>
+  </div>
+
+  <!-- ROW 4: 美食 -->
+  <div class="compare-row">
+    <div class="cr-label">🍽️<br>美食體驗</div>
+    <div class="cr-osaka winner">
+      <div class="winner-tag osaka-win">★ 勝</div>
+      <div class="stars">
+        <span class="star on-o">★</span><span class="star on-o">★</span>
+        <span class="star on-o">★</span><span class="star on-o">★</span><span class="star on-o">★</span>
+      </div>
+      <div class="cr-val">頂級</div>
+      <div class="cr-desc">大阪是「天下の台所」，章魚燒、大阪燒、串カツ、迴轉壽司，品項豐富且成熟，這點無庸置疑。</div>
+    </div>
+    <div class="cr-xiamen">
+      <div class="stars">
+        <span class="star on-x">★</span><span class="star on-x">★</span>
+        <span class="star on-x">★</span><span class="star on-x">★</span><span class="star off">★</span>
+      </div>
+      <div class="cr-val">很強</div>
+      <div class="cr-desc">麵線糊、泉州牛排、醬油水海鮮、燒肉粽——口味濃厚傳統，而且更便宜，也有驚喜感。</div>
+    </div>
+  </div>
+
+  <!-- ROW 5: 購物 -->
+  <div class="compare-row">
+    <div class="cr-label">🛍️<br>購物</div>
+    <div class="cr-osaka winner">
+      <div class="winner-tag osaka-win">★ 勝</div>
+      <div class="stars">
+        <span class="star on-o">★</span><span class="star on-o">★</span>
+        <span class="star on-o">★</span><span class="star on-o">★</span><span class="star on-o">★</span>
+      </div>
+      <div class="cr-val">壓倒性優勢</div>
+      <div class="cr-desc">藥妝、品牌、古著、伴手禮，大阪在購物這塊毋庸置疑是頂點，廈門完全比不了。</div>
+    </div>
+    <div class="cr-xiamen">
+      <div class="stars">
+        <span class="star on-x">★</span><span class="star on-x">★</span>
+        <span class="star off">★</span><span class="star off">★</span><span class="star off">★</span>
+      </div>
+      <div class="cr-val">偏弱</div>
+      <div class="cr-desc">鐵觀音茶葉、海蠣餅乾、醬料等伴手禮還不錯，但購物豐富度跟大阪差距很大。</div>
+    </div>
+  </div>
+
+  <!-- ROW 6: 兄弟體驗 -->
+  <div class="compare-row">
+    <div class="cr-label">👬<br>兄弟感</div>
+    <div class="cr-osaka">
+      <div class="stars">
+        <span class="star on-o">★</span><span class="star on-o">★</span>
+        <span class="star on-o">★</span><span class="star on-o">★</span><span class="star off">★</span>
+      </div>
+      <div class="cr-val">好</div>
+      <div class="cr-desc">居酒屋喝酒、掃街吃東西，兄弟感不錯，但場景本身沒什麼特別，換個城市也可以複製。</div>
+    </div>
+    <div class="cr-xiamen winner">
+      <div class="winner-tag xiamen-win">✦ 勝</div>
+      <div class="stars">
+        <span class="star on-x">★</span><span class="star on-x">★</span>
+        <span class="star on-x">★</span><span class="star on-x">★</span><span class="star on-x">★</span>
+      </div>
+      <div class="cr-val">不可複製</div>
+      <div class="cr-desc">蟳埔村海邊看夕陽、環島路吹海風看金門、泉州金魚巷喝茶聊天——這些場景別的地方找不到。</div>
+    </div>
+  </div>
+
+  <!-- ROW 7: 交通便利 -->
+  <div class="compare-row">
+    <div class="cr-label">🚇<br>交通</div>
+    <div class="cr-osaka winner">
+      <div class="winner-tag osaka-win">★ 勝</div>
+      <div class="cr-val">極度便利</div>
+      <div class="cr-desc">地鐵系統完整，ICOCA 一卡搞定，英文標示清楚，完全不怕迷路，適合第一次出國的人。</div>
+    </div>
+    <div class="cr-xiamen">
+      <div class="cr-val">尚可</div>
+      <div class="cr-desc">廈門地鐵 + 滴滴打車，泉州景點需要打車串聯，需要一點適應，但整體不難。</div>
+    </div>
+  </div>
+
+  <!-- ROW 8: 語言 -->
+  <div class="compare-row">
+    <div class="cr-label">🗣️<br>語言</div>
+    <div class="cr-osaka">
+      <div class="cr-val">日文 · 英文輔助</div>
+      <div class="cr-desc">日文不通靠翻譯軟體，大城市餐廳多有圖片菜單，問題不大，但偶爾會遇到溝通障礙。</div>
+    </div>
+    <div class="cr-xiamen winner">
+      <div class="winner-tag xiamen-win">✦ 勝</div>
+      <div class="cr-val">繁體中文完全通</div>
+      <div class="cr-desc">閩南語跟台語同源，普通話完全溝通，不存在語言障礙，點菜、問路、殺價都沒問題。</div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="verdict-icon">🤖</div>
+    <h3>Claude 的最終判斷</h3>
+    <p>
+      大阪在<strong style="color:var(--osaka-c)">美食、購物、交通便利性</strong>上確實有優勢，這點不否認。<br>
+      但你們是兩個兄弟出走，省錢預算，重點是「這趟要留下什麼回憶」。<br><br>
+      大阪的體驗可以被複製——居酒屋、藥妝店、道頓堀，台灣人去過的比例極高，回來跟別人說「我去大阪」，大家都點頭說「我也去過」。<br><br>
+      廈門泉州的體驗不能被複製。<strong style="color:var(--rec)">蚵殼厝、千年洛陽橋、泉州牛排、金魚巷的鐵觀音——這些是只有你們才會有的故事。</strong><br>
+      同樣的預算，更自由的心情，更深的文化衝擊，更難忘的兄弟回憶。
+    </p>
+    <div class="verdict-score">
+      <div class="vs-item">
+        <div class="vs-num o">3</div>
+        <div class="vs-label">大阪勝項</div>
+      </div>
+      <div class="vs-item" style="font-family:'Bebas Neue';font-size:40px;color:rgba(255,255,255,.1);padding-top:8px;">:</div>
+      <div class="vs-item">
+        <div class="vs-num x">5</div>
+        <div class="vs-label">廈門泉州勝項</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ITINERARY PREVIEW ===== -->
+  <div class="sec" style="padding-top:60px;">
+    <h2>行程總覽</h2>
+    <p>選好了就點進去看完整行程表</p>
+  </div>
+
+  <div class="preview-grid">
+    <!-- 大阪 -->
+    <div class="prev-card">
+      <div class="prev-head osaka-h">
+        <div class="prev-head-deco">🎌</div>
+        <span class="prev-tag osaka-tag">PART 1 · 日本</span>
+        <h3 class="osaka-txt">🇯🇵 大阪</h3>
+        <div class="ph-date">5/30 FRI — 6/4 WED · 6天5夜</div>
+      </div>
+      <div class="prev-body">
+        <div class="day-line">
+          <div class="dl-day o">01</div>
+          <div class="dl-info">
+            <div class="dl-date">5/30 FRI</div>
+            <div class="dl-title">抵達 · 黑門市場開吃</div>
+            <div class="dl-desc">海膽、螃蟹腳、道頓堀居酒屋第一杯</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day o">02</div>
+          <div class="dl-info">
+            <div class="dl-date">5/31 SAT</div>
+            <div class="dl-title">道頓堀 · 心齋橋 · 美國村</div>
+            <div class="dl-desc">購物主力日，章魚燒大阪燒古著掃貨</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day o">03</div>
+          <div class="dl-info">
+            <div class="dl-date">6/1 SUN</div>
+            <div class="dl-title">大阪城 · 天神橋筋商店街</div>
+            <div class="dl-desc">日本最長商店街，庶民價掃紀念品</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day o">04</div>
+          <div class="dl-info">
+            <div class="dl-date">6/2 MON</div>
+            <div class="dl-title">奈良半日 + 燒肉夜</div>
+            <div class="dl-desc">餵鹿、東大寺大佛、回大阪吃燒肉</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day o">05</div>
+          <div class="dl-info">
+            <div class="dl-date">6/3 TUE</div>
+            <div class="dl-title">新世界 · 通天閣 · 最後掃貨</div>
+            <div class="dl-desc">炸串、住吉大社、金龍拉麵收尾</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day o">06</div>
+          <div class="dl-info">
+            <div class="dl-date">6/4 WED</div>
+            <div class="dl-title">退稅 · 返程</div>
+            <div class="dl-desc">KIX 出發，機場退稅最後步驟</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 廈門泉州 -->
+    <div class="prev-card">
+      <div class="prev-head xiamen-h">
+        <div class="prev-head-deco">🏮</div>
+        <span class="prev-tag xiamen-tag-c">RECOMMENDED · 閩南</span>
+        <h3 class="xiamen-txt">🏮 廈門 + 泉州</h3>
+        <div class="ph-date">6/4 WED — 6/9 MON · 6天5夜</div>
+      </div>
+      <div class="prev-body">
+        <div class="day-line">
+          <div class="dl-day x">01</div>
+          <div class="dl-info">
+            <div class="dl-date">6/4 WED</div>
+            <div class="dl-title">抵達廈門 · 八市海鮮夜</div>
+            <div class="dl-desc">中山路騎樓、八市大排檔醬油水海鮮</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day x">02</div>
+          <div class="dl-info">
+            <div class="dl-date">6/5 THU</div>
+            <div class="dl-title">鼓浪嶼 · 沙坡尾</div>
+            <div class="dl-desc">早渡輪上島、百年洋樓老榕、漁港文創</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day x">03</div>
+          <div class="dl-info">
+            <div class="dl-date">6/6 FRI</div>
+            <div class="dl-title">轉戰泉州 · 開元寺 · 西街天台</div>
+            <div class="dl-desc">高鐵30分換城、宋代雙石塔、俯瞰夜景</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day x">04</div>
+          <div class="dl-info">
+            <div class="dl-date">6/7 SAT</div>
+            <div class="dl-title">洛陽橋 · 清淨寺 · 蟳埔村</div>
+            <div class="dl-desc">千年石橋、伊斯蘭古寺、蚵殼厝夕陽</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day x">05</div>
+          <div class="dl-info">
+            <div class="dl-date">6/8 SUN</div>
+            <div class="dl-title">金魚巷喝茶 · 回廈門騎車</div>
+            <div class="dl-desc">安溪鐵觀音慢生活、環島路看金門夜景</div>
+          </div>
+        </div>
+        <div class="day-line">
+          <div class="dl-day x">06</div>
+          <div class="dl-info">
+            <div class="dl-date">6/9 MON</div>
+            <div class="dl-title">萬石植物園 · 返程</div>
+            <div class="dl-desc">熱帶雨林仙人掌奇觀，滿載而歸</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>決定好了嗎？</h2>
+    <p>
+      如果選大阪——那就好好掃街，把藥妝買好買滿。<br>
+      如果選廈門泉州——那就準備好被文化震撼，帶一輩子忘不掉的回憶回來。
+    </p>
+    <div class="cta-btns">
+      <a class="btn btn-osaka" href="#">我選大阪 🇯🇵</a>
+      <a class="btn btn-xiamen" href="#">我選廈門泉州 🏮 （Claude 推薦）</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>👬 兄弟出走決策系統 · 2025 · Claude 製作</p>
+</div>
+
+<script>
+  // custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // hover effect on cards
+  document.querySelectorAll('.prev-card, .btn, .compare-row').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2.5)'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+</script>
+</body>
+</html>
